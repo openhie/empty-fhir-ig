@@ -14,6 +14,6 @@ Canonical / permanent URL:
 Issues and change requests are managed here:  
 
 Issues:  __https://github.com/<handle>/<repo>/issues__  
-Kanban board:  __https://github.com/<handle>/<repo>/projects/1__  
+Kanban board:  __https://github.com/{{handle}}/<repo>/projects/1__  
 
 ---
