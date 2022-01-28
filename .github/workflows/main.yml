@@ -27,6 +27,9 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+   
+      - name: Create gh-pages branch if it doesn't exist
+        uses: christopherdavenport/create-ghpages-ifnotexists@v1    
       - name: Get branch name
         run: echo ${GITHUB_REF##*/}
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
