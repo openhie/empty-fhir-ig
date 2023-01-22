@@ -4,6 +4,8 @@
 # 2021-06-18: (JCT): publish default branches to / , other branches branches/<branch>
 # 2021-11-26: (JCT): Reusable workflow
 # 2022-01-28: (JCT): add auto-create gh-pages if it doesn't exist
+# 2023-01-22: (JCT): use checkout action v3, and JamesIves/github-pages-deploy-action@v4
+
 
 # Make sure your repo has a branch called gh-pages
 
