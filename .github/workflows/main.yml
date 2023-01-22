@@ -54,7 +54,7 @@ jobs:
         uses: tj-actions/branch-names@v4.3
 
       - name: Deploy candidate
-        uses: JamesIves/github-pages-deploy-action@4
+        uses: JamesIves/github-pages-deploy-action@4.4.1
         if: ${{ steps.branch-name.outputs.is_default }} == 'false'
         with:
           branch: gh-pages # The branch the action should deploy to.
@@ -64,7 +64,7 @@ jobs:
           clean: false 
 
       - name: Deploy main
-        uses: JamesIves/github-pages-deploy-action@4
+        uses: JamesIves/github-pages-deploy-action@4.4.1
         if: ${{ steps.branch-name.outputs.is_default }} == 'true'
         with:
           branch: gh-pages # The branch the action should deploy to.
