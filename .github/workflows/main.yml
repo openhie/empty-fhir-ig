@@ -32,7 +32,7 @@ jobs:
       - name: Get branch name
         run: echo ${GITHUB_REF##*/}
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Create gh-pages branch if it doesn't exist
         uses: christopherdavenport/create-ghpages-ifnotexists@v1    
       - name: Update the image to the latest publisher
@@ -52,7 +52,7 @@ jobs:
         uses: tj-actions/branch-names@v4.3
 
       - name: Deploy candidate
-        uses: JamesIves/github-pages-deploy-action@4.1.4
+        uses: JamesIves/github-pages-deploy-action@4
         if: ${{ steps.branch-name.outputs.is_default }} == 'false'
         with:
           branch: gh-pages # The branch the action should deploy to.
@@ -62,7 +62,7 @@ jobs:
           clean: false 
 
       - name: Deploy main
-        uses: JamesIves/github-pages-deploy-action@4.1.4
+        uses: JamesIves/github-pages-deploy-action@4
         if: ${{ steps.branch-name.outputs.is_default }} == 'true'
         with:
           branch: gh-pages # The branch the action should deploy to.
