@@ -47,46 +47,6 @@ jobs:
           # Run the publisher - don't run the batch script but run the line directly
           args: java -jar ./input-cache/publisher.jar publisher -ig . -auto-ig-build -repo https://github.com/${{github.repository}}
 
-      - name: Commit QA results
-        run: |
-          git config --global user.email "github-actions@github.com"
-          git config --global user.name "GitHub Actions"
-          git checkout -b qa-results
-          git add output/qa.json -f
-          git commit -m "Update QA results"
-          git push origin qa-results
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-
-      - name: Download and update badges.md
-        run: |
-          wget -O badges.md https://raw.githubusercontent.com/costateixeira/ig-badges/main/badges.md
-          sed -i -e "s|__GH_OWNER__|${GITHUB_REPOSITORY_OWNER}|g" badges.md
-          sed -i -e "s|__GH_BRANCH__|${GITHUB_REF##*/}|g" badges.md
-          sed -i -e "s|__GH_REPO__|${GITHUB_REPOSITORY##*/}|g" badges.md
-          ERRS=$(jq '.errs' output/qa.json)
-          WARNINGS=$(jq '.warnings' output/qa.json)
-          sed -i -e "s|__ERRS__|$ERRS|g" badges.md
-          sed -i -e "s|__WARNINGS__|$WARNINGS|g" badges.md
-
-      - name: Replace badges in README.md
-        run: |
-          awk 'NR==FNR{new = new $0 ORS; next} /<!--\/badges-->/{f=0} !f{print} /<!--badges-->/{printf "%s",new; f=1}' badges.md README.md > README_NEW.md && mv README_NEW.md README.md
-          cat README.md
-
-      - name: Stage and commit README.md
-        run: |
-          git config user.name "GitHub Actions Bot"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add README.md
-          git commit -m "Update README.md with new badges"
-          git push
-
-
-
-
-
       - name: Get branch names
         id: branch-name
         uses: tj-actions/branch-names@v4.3
