@@ -51,10 +51,10 @@ jobs:
         run: |
           git config --global user.email "github-actions@github.com"
           git config --global user.name "GitHub Actions"
-          git checkout ${{ github.ref }}
-          git add output/qa.json -f
+          git checkout -b qa-results
+          git add output/qa.json
           git commit -m "Update QA results"
-          git push
+          git push origin qa-results
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
