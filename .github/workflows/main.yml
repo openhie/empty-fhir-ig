@@ -47,6 +47,18 @@ jobs:
           # Run the publisher - don't run the batch script but run the line directly
           args: java -jar ./input-cache/publisher.jar publisher -ig . -auto-ig-build -repo https://github.com/${{github.repository}}
 
+      - name: Commit QA results
+        run: |
+          git config --global user.email "github-actions@github.com"
+          git config --global user.name "GitHub Actions"
+          git checkout ${{ github.ref }}
+          git add output/qa.json
+          git commit -m "Update QA results"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+
       - name: Download and update badges.md
         run: |
           wget -O badges.md https://raw.githubusercontent.com/costateixeira/ig-badges/main/badges.md
@@ -70,6 +82,10 @@ jobs:
           git add README.md
           git commit -m "Update README.md with new badges"
           git push
+
+
+
+
 
       - name: Get branch names
         id: branch-name
