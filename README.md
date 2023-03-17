@@ -5,9 +5,9 @@ Empty IG
 ![qa-errs](https://img.shields.io/github/workflow/status/openhie/empty-fhir-ig/ig-build?label=Build%20status)
 
 ![issues](https://img.shields.io/github/issues/openhie/empty-fhir-ig)
-![qa-errs](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/openhie/empty-fhir-ig/ft-badges/status/qa-errs.json)
-![qa-errs](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/openhie/empty-fhir-ig/ft-badges/status/qa-warns.json)
 
+![Errors](https://img.shields.io/badge/Errors-4-red)
+![Warnings](https://img.shields.io/badge/Warnings-5-yellow)
 <!--/badges-->
 This is an empty IG
 <br> </br>
