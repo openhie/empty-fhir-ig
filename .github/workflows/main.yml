@@ -52,7 +52,7 @@ jobs:
           git config --global user.email "github-actions@github.com"
           git config --global user.name "GitHub Actions"
           git checkout -b qa-results
-          git add output/qa.json
+          git add output/qa.json -f
           git commit -m "Update QA results"
           git push origin qa-results
         env:
