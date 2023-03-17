@@ -1,5 +1,7 @@
 Empty IG
 ---
+<!--badges--> 
+<!--/badges-->
 This is an empty IG
 <br> </br>
 ###
