@@ -37,20 +37,20 @@ jobs:
         run: echo ${GITHUB_REF##*/}
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
-      - name: Create gh-pages branch if it doesn't exist
-        run: |
-          git fetch origin
-          exists=`git show-ref refs/heads/gh-pages`
-          if [ -n "$exists" ]; then
-            echo 'gh-pages branch exists';
-          else
-            echo 'gh-pages branch does not exist, creating it';
-            git checkout --orphan gh-pages
-            git reset --hard
-            git commit --allow-empty -m "Initializing gh-pages branch"
-            git push origin gh-pages
-            git checkout ${GITHUB_REF##*/}
-          fi
+#      - name: Create gh-pages branch if it doesn't exist
+#        run: |
+#          git fetch origin
+#          exists=`git show-ref refs/heads/gh-pages`
+#          if [ -n "$exists" ]; then
+#            echo 'gh-pages branch exists';
+#          else
+#            echo 'gh-pages branch does not exist, creating it';
+#            git checkout --orphan gh-pages
+#            git reset --hard
+#            git commit --allow-empty -m "Initializing gh-pages branch"
+#            git push origin gh-pages
+#            git checkout ${GITHUB_REF##*/}
+#          fi
       - name: Update the image to the latest publisher
         uses: docker://hl7fhir/ig-publisher-base:latest
         with:
