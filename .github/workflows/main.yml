@@ -37,6 +37,8 @@ jobs:
         run: echo ${GITHUB_REF##*/}
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
 
+      - uses: actions/checkout@v3
+
       - name: Create gh-pages branch if it doesn't exist
         run: |
           exists=$(git ls-remote --heads origin gh-pages | wc -l)
@@ -48,8 +50,6 @@ jobs:
             echo 'gh-pages branch exists'
           fi      
       
-      - uses: actions/checkout@v3
-
       - name: Update the image to the latest publisher
         uses: docker://hl7fhir/ig-publisher-base:latest
         with:
