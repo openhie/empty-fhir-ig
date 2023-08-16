@@ -39,25 +39,24 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
-      - name: Create gh-pages branch if it doesn't exist
-        run: |
-          exists=$(git ls-remote --heads origin gh-pages | wc -l)
-          if [ "$exists" -eq "0" ]; then
-            echo 'gh-pages branch does not exist, creating it'
+#      - name: Create gh-pages branch if it doesn't exist
+#        run: |
+#          exists=$(git ls-remote --heads origin gh-pages | wc -l)
+#          if [ "$exists" -eq "0" ]; then
+#            echo 'gh-pages branch does not exist, creating it'
       
-            # Set placeholder user name and email for Git
-            git config user.email "automation@example.com"
-            git config user.name "Automation bot"
+#            # Set placeholder user name and email for Git
+#            git config user.email "automation@example.com"
+#            git config user.name "Automation bot"
 
-            git checkout --orphan gh-pages
-            git reset --hard
-            git commit --allow-empty -m "create gh pages"
-            git push origin gh-pages
-          else
-            echo 'gh-pages branch exists'
-          fi
-
-      - uses: actions/checkout@v3
+#            git checkout --orphan gh-pages
+#            git reset --hard
+#            git commit --allow-empty -m "create gh pages"
+#            git push origin gh-pages
+#          else
+#            echo 'gh-pages branch exists'
+#          fi
+#      - uses: actions/checkout@v3
       
       - name: Update the image to the latest publisher
         uses: docker://hl7fhir/ig-publisher-base:latest
