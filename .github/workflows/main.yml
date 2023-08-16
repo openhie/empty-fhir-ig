@@ -44,11 +44,18 @@ jobs:
           exists=$(git ls-remote --heads origin gh-pages | wc -l)
           if [ "$exists" -eq "0" ]; then
             echo 'gh-pages branch does not exist, creating it'
-            git commit-tree -m "Initializing empty gh-pages branch" 4b825dc642cb6eb9a060e54bf8d69288fbee4904 | xargs git push origin
+      
+            # Set placeholder user name and email for Git
+            git config user.email "automation@example.com"
+            git config user.name "Automation bot"
+
+            git checkout --orphan gh-pages
+            git reset --hard
+            git commit --allow-empty -m "create gh pages"
             git push origin gh-pages
           else
             echo 'gh-pages branch exists'
-          fi      
+          fi
       
       - name: Update the image to the latest publisher
         uses: docker://hl7fhir/ig-publisher-base:latest
