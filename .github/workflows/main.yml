@@ -36,20 +36,19 @@ jobs:
       - name: Get branch name
         run: echo ${GITHUB_REF##*/}
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
+
       - name: Create gh-pages branch if it doesn't exist
         run: |
-          git fetch origin
           exists=$(git ls-remote --heads origin gh-pages | wc -l)
           if [ "$exists" -eq "0" ]; then
             echo 'gh-pages branch does not exist, creating it'
-            git checkout --orphan gh-pages
-            git rm -rf . # Remove all files and directories from the orphaned branch
-            git commit --allow-empty -m "Initializing empty gh-pages branch"
+            git commit-tree -m "Initializing empty gh-pages branch" 4b825dc642cb6eb9a060e54bf8d69288fbee4904 | xargs git push origin
             git push origin gh-pages
           else
             echo 'gh-pages branch exists'
-          fi
+          fi      
+      
+      - uses: actions/checkout@v3
 
       - name: Update the image to the latest publisher
         uses: docker://hl7fhir/ig-publisher-base:latest
