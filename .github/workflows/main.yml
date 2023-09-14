@@ -68,7 +68,7 @@ jobs:
         uses: docker://hl7fhir/ig-publisher-base:latest
         with:
           entrypoint: /bin/sh
-          args: -c "mkdir -p ./fhir-package-cache"
+          args: -c "mkdir -p ./fhir-package-cache && chown $(id -u):$(id -g) ./fhir-package-cache"
 
       - name: Run the IG publisher
         uses: docker://hl7fhir/ig-publisher-base:latest
