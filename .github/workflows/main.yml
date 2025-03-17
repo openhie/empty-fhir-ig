@@ -82,10 +82,10 @@ jobs:
         run: ls -la ./output
 
 
-      - name: Get branch names
-        id: branch-name
-        uses: tj-actions/branch-names@v4.3
+      - name: Get branch name
+        run: echo "BRANCH_NAME=${GITHUB_REF##*/}" >> $GITHUB_ENV
 
+        
       - name: Deploy candidate
         uses: JamesIves/github-pages-deploy-action@v4.4.2
         if: ${{ steps.branch-name.outputs.is_default }} == 'false'
